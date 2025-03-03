@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Financial Loan Calculator</title>
+        <link rel="stylesheet" href="loans_styles.css">
+    </head>
+<body>
+    <div class="main-container">
+        <div class="content">
+            <h1>Financial Calculator</h1>
+
+            <div class="calculator-type">
+                <button id="deposit-btn" class="active">Deposit Calculator</button>
+                <button id="loan-btn">Loan Calculator</button>
+            </div>
+
+            <div class="form-container">
+                <!-- Deposit Calculator Form -->
+                <form id="deposit-form" class="deposit-form active-form">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="deposit-principal">Principal Amount (₹)</label>
+                                <input type="number" id="deposit-principal" placeholder="Enter principal amount" required>
+                                <div id="deposit-principal-error" class="error-message">Please enter a valid principal amount</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="deposit-maturity">Maturity Period (Years)</label>
+                                <input type="number" id="deposit-maturity" placeholder="Enter maturity period" min="1" max="10" required>
+                                <div id="deposit-maturity-error" class="error-message">Maturity period must be between 1-10 years</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deposit-tenure">Tenure</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="deposit-tenure-10" name="deposit-tenure" value="10" checked>
+                                <label for="deposit-tenure-10">< 10 Yrs</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deposit-interest">Interest Rate</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="deposit-interest-7" name="deposit-interest" value="7" checked>
+                                <label for="deposit-interest-7">7%</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="deposit-calculate" class="calculate">CALCULATE</button>
+
+                    <div id="deposit-results" class="results">
+                        <h3>Deposit Calculation Results</h3>
+                        <p>Maturity Amount: <span id="maturity-amount"></span></p>
+                        <p>Interest Earned: <span id="interest-earned"></span></p>
+                    </div>
+                </form>
+
+                <!-- Loan Calculator Form -->
+                <form id="loan-form" class="loan-form">
+                    <div class="form-group">
+                        <label for="loan-applicant">Applicant Name</label>
+                        <input type="text" id="loan-applicant" placeholder="Enter applicant name" required>
+                        <div id="loan-applicant-error" class="error-message">Please enter applicant name</div>
+                    </div>
+
+                    <div class="section-title">Select Loan Type</div>
+
+                    <div class="form-group">
+                        <div id="loan-type-container">
+                            <div class="loan-option-card" data-type="home">
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-type-home" name="loan-type" value="home" checked>
+                                    <label for="loan-type-home">HOME LOAN</label>
+                                </div>
+                                <div class="loan-option-details">
+                                    <span class="loan-detail">Interest: 9%</span>
+                                    <span class="loan-detail">Tenure: up to 30 years</span>
+                                    <span class="loan-detail">Amount: 5L - 1Cr</span>
+                                </div>
+                            </div>
+
+                            <div class="loan-option-card" data-type="car">
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-type-car" name="loan-type" value="car">
+                                    <label for="loan-type-car">CAR LOAN</label>
+                                </div>
+                                <div class="loan-option-details">
+                                    <span class="loan-detail">Interest: 11%</span>
+                                    <span class="loan-detail">Tenure: up to 7 years</span>
+                                    <span class="loan-detail">Amount: 1L - 15L</span>
+                                </div>
+                            </div>
+
+                            <div class="loan-option-card" data-type="personal">
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-type-personal" name="loan-type" value="personal">
+                                    <label for="loan-type-personal">PERSONAL LOAN</label>
+                                </div>
+                                <div class="loan-option-details">
+                                    <span class="loan-detail">Interest: 15%</span>
+                                    <span class="loan-detail">Tenure: up to 5 years</span>
+                                    <span class="loan-detail">Amount: 10k - 5L</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: none;">
+                        <div class="form-group">
+                            <label>Interest Rate</label>
+                            <div class="radio-group" id="interest-options">
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-interest-9" name="loan-interest" value="9" checked>
+                                    <label for="loan-interest-9">9%</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-interest-11" name="loan-interest" value="11">
+                                    <label for="loan-interest-11">11%</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-interest-15" name="loan-interest" value="15">
+                                    <label for="loan-interest-15">15%</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tenure Range</label>
+                            <div class="radio-group" id="tenure-options">
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-tenure-30" name="loan-tenure" value="30" checked>
+                                    <label for="loan-tenure-30">< 30 years</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-tenure-7" name="loan-tenure" value="7">
+                                    <label for="loan-tenure-7">< 7 years</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-tenure-5" name="loan-tenure" value="5">
+                                    <label for="loan-tenure-5">< 5 years</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Amount Range</label>
+                            <div class="radio-group" id="amount-options">
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-amount-5l-1cr" name="loan-amount" value="500000-10000000" checked>
+                                    <label for="loan-amount-5l-1cr">5L-1Cr</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-amount-1l-15l" name="loan-amount" value="100000-1500000">
+                                    <label for="loan-amount-1l-15l">1L-15L</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="loan-amount-10k-5l" name="loan-amount" value="10000-500000">
+                                    <label for="loan-amount-10k-5l">10k-5L</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-title">Enter Loan Details</div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="loan-amount-exact">Loan Amount (₹)</label>
+                                <input type="number" id="loan-amount-exact" placeholder="Enter loan amount" required>
+                                <div id="loan-amount-error" class="error-message">Amount must be within the selected range</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="loan-tenure-exact">Loan Tenure (Years)</label>
+                                <input type="number" id="loan-tenure-exact" placeholder="Enter loan tenure in years" required>
+                                <div id="loan-tenure-error" class="error-message">Tenure must be within the selected range</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Interest Rate</label>
+                        <div id="selected-interest-rate" style="padding: 10px; background-color: #f0f7ff; border-radius: 8px; border-left: 4px solid #1E88E5; font-weight: bold;">9%</div>
+                    </div>
+
+                    <button type="button" id="loan-calculate" class="calculate">CALCULATE EMI</button>
+
+                    <div id="loan-results" class="results">
+                        <h3>EMI Calculation Results</h3>
+                        <p>Monthly EMI: <span id="monthly-emi"></span></p>
+                        <p>Total Interest: <span id="total-interest"></span></p>
+                        <p>Total Amount: <span id="total-amount"></span></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./loans_script.js"></script>
+</body>
+</html>
