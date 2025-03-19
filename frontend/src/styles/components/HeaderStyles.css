@@ -1,0 +1,27 @@
+.more{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .slogan{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .button{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        button{
+            height: 2.3rem;
+            margin: 0.5rem;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+    }
+}
